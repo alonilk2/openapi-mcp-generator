@@ -1,0 +1,462 @@
+connector:
+  name: swagger-petstore
+  version: 1.0.7
+  base_url: https://petstore.swagger.io/v2
+  tools:
+  - name: upload_file
+    description: uploads an image
+    input_schema:
+      type: object
+      properties:
+        petId:
+          type: integer
+          format: int64
+          description: ID of pet to update
+        additionalMetadata:
+          type: string
+          description: Additional data to pass to server
+        file:
+          type: string
+          description: file to upload
+      required:
+      - petId
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: POST /pet/{petId}/uploadImage
+    auth:
+      type: none
+  - name: add_pet
+    description: Add a new pet to the store
+    input_schema:
+      type: object
+      properties:
+        body:
+          $ref: '#/definitions/Pet'
+          description: Pet object that needs to be added to the store
+      required:
+      - body
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: POST /pet
+    auth:
+      type: none
+  - name: update_pet
+    description: Update an existing pet
+    input_schema:
+      type: object
+      properties:
+        body:
+          $ref: '#/definitions/Pet'
+          description: Pet object that needs to be added to the store
+      required:
+      - body
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: PUT /pet
+    auth:
+      type: none
+  - name: find_pets_by_status
+    description: Finds Pets by status
+    input_schema:
+      type: object
+      properties:
+        status:
+          type: array
+          items:
+            type: string
+            enum:
+            - available
+            - pending
+            - sold
+            default: available
+          description: Status values that need to be considered for filter
+      required:
+      - status
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: GET /pet/findByStatus
+    auth:
+      type: none
+  - name: find_pets_by_tags
+    description: Finds Pets by tags
+    input_schema:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags to filter by
+      required:
+      - tags
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: GET /pet/findByTags
+    auth:
+      type: none
+  - name: get_pet_by_id
+    description: Find pet by ID
+    input_schema:
+      type: object
+      properties:
+        petId:
+          type: integer
+          format: int64
+          description: ID of pet to return
+      required:
+      - petId
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: GET /pet/{petId}
+    auth:
+      type: none
+  - name: update_pet_with_form
+    description: Updates a pet in the store with form data
+    input_schema:
+      type: object
+      properties:
+        petId:
+          type: integer
+          format: int64
+          description: ID of pet that needs to be updated
+        name:
+          type: string
+          description: Updated name of the pet
+        status:
+          type: string
+          description: Updated status of the pet
+      required:
+      - petId
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: POST /pet/{petId}
+    auth:
+      type: none
+  - name: delete_pet
+    description: Deletes a pet
+    input_schema:
+      type: object
+      properties:
+        api_key:
+          type: string
+          description: 'Parameter: api_key'
+        petId:
+          type: integer
+          format: int64
+          description: Pet id to delete
+      required:
+      - petId
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: DELETE /pet/{petId}
+    auth:
+      type: none
+  - name: get_inventory
+    description: Returns pet inventories by status
+    input_schema:
+      type: object
+      properties: {}
+      required: []
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: GET /store/inventory
+    auth:
+      type: none
+  - name: place_order
+    description: Place an order for a pet
+    input_schema:
+      type: object
+      properties:
+        body:
+          $ref: '#/definitions/Order'
+          description: order placed for purchasing the pet
+      required:
+      - body
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: POST /store/order
+    auth:
+      type: none
+  - name: get_order_by_id
+    description: Find purchase order by ID
+    input_schema:
+      type: object
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          minimum: 1
+          maximum: 10
+          description: ID of pet that needs to be fetched
+      required:
+      - orderId
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: GET /store/order/{orderId}
+    auth:
+      type: none
+  - name: delete_order
+    description: Delete purchase order by ID
+    input_schema:
+      type: object
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          minimum: 1
+          description: ID of the order that needs to be deleted
+      required:
+      - orderId
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: DELETE /store/order/{orderId}
+    auth:
+      type: none
+  - name: create_users_with_list_input
+    description: Creates list of users with given input array
+    input_schema:
+      type: object
+      properties:
+        body:
+          type: array
+          items:
+            $ref: '#/definitions/User'
+          description: List of user object
+      required:
+      - body
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: POST /user/createWithList
+    auth:
+      type: none
+  - name: get_user_by_name
+    description: Get user by user name
+    input_schema:
+      type: object
+      properties:
+        username:
+          type: string
+          description: 'The name that needs to be fetched. Use user1 for testing. '
+      required:
+      - username
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: GET /user/{username}
+    auth:
+      type: none
+  - name: update_user
+    description: Updated user
+    input_schema:
+      type: object
+      properties:
+        username:
+          type: string
+          description: name that need to be updated
+        body:
+          $ref: '#/definitions/User'
+          description: Updated user object
+      required:
+      - username
+      - body
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: PUT /user/{username}
+    auth:
+      type: none
+  - name: delete_user
+    description: Delete user
+    input_schema:
+      type: object
+      properties:
+        username:
+          type: string
+          description: The name that needs to be deleted
+      required:
+      - username
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: DELETE /user/{username}
+    auth:
+      type: none
+  - name: login_user
+    description: Logs user into the system
+    input_schema:
+      type: object
+      properties:
+        username:
+          type: string
+          description: The user name for login
+        password:
+          type: string
+          description: The password for login in clear text
+      required:
+      - username
+      - password
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: GET /user/login
+    auth:
+      type: none
+  - name: logout_user
+    description: Logs out current logged in user session
+    input_schema:
+      type: object
+      properties: {}
+      required: []
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: GET /user/logout
+    auth:
+      type: none
+  - name: create_users_with_array_input
+    description: Creates list of users with given input array
+    input_schema:
+      type: object
+      properties:
+        body:
+          type: array
+          items:
+            $ref: '#/definitions/User'
+          description: List of user object
+      required:
+      - body
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: POST /user/createWithArray
+    auth:
+      type: none
+  - name: create_user
+    description: Create user
+    input_schema:
+      type: object
+      properties:
+        body:
+          $ref: '#/definitions/User'
+          description: Created user object
+      required:
+      - body
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Operation result
+      required:
+      - result
+    endpoint: POST /user
+    auth:
+      type: none
