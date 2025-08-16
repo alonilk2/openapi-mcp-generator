@@ -270,14 +270,6 @@ runtime/
 └── tests/              # Test suite
 ```
 
-## MCP Protocol Implementation
-
-Current scope focuses on essential interactions:
-
-- **Capabilities**: Static capability set (tools list change notifications supported)
-- **Tool Discovery**: Aggregates built-in + connector tools (deriving parameter metadata from JSON Schemas)
-- **Tool Execution**: Unified real execution path via `ToolExecutionClient`; credential errors surface as `isError` responses (no mock fallbacks)
-
 ### Example CLI Workflow
 
 ```powershell
@@ -311,21 +303,6 @@ When connected via stdio server:
 # Execute a tool
 {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "echo", "arguments": {"text": "Hello MCP!"}}}
 ```
-
-## Contributing
-
-1. Follow the existing code style and patterns
-2. Add tests for new CLI functionality  
-3. Update documentation for new commands
-4. Test CLI commands with various inputs and edge cases
-5. Ensure all CI/CD checks pass
-
-### Adding New Connector Support
-
-1. **Import workflow**: Use `mcp_cli.py import` to generate manifests from OpenAPI specs
-2. **Custom tools**: Add built-in tools to `core/builtin_tools.py`
-3. **Authentication**: Extend credential management in `cli/commands/credentials_cmd.py`
-4. **Validation**: Update manifest validation in `models/manifest.py`
 
 ## License
 
