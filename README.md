@@ -2,6 +2,10 @@
 
 The Runtime Orchestrator is a FastAPI-based service that acts as an MCP (Model Context Protocol) gateway. It loads connectors dynamically, handles tool calls with built-in authentication, retries, rate limiting, and provides comprehensive observability.
 
+## Demo
+
+![Usage Demo](./assets/usage_demo.gif)
+
 ## Features
 
 - **MCP Gateway**: Implements core MCP capabilities (capabilities, tool discovery & execution)
@@ -104,6 +108,8 @@ The MCP Runtime Orchestrator provides several CLI interfaces for managing connec
 The main CLI entry point provides comprehensive connector management capabilities:
 
 #### Import Command - Convert OpenAPI to MCP Connectors
+
+![MCP CLI Import Demo](./assets/mcp_cli_import_demo.gif)
 
 ```powershell
 # Import from URL
