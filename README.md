@@ -1,6 +1,6 @@
-# openapi-mcp-generator - MCP Runtime Orchestrator
+# openapi-mcp-generator - seamless API-to-AI integration
 
-The Runtime Orchestrator is a FastAPI-based service that acts as an MCP (Model Context Protocol) gateway, providing the fastest way to connect LLM chat interfaces with any OpenAPI-compliant API in seconds. Simply point it at an OpenAPI specification document and it automatically generates MCP-compliant tool manifests, handles authentication, and provides instant access to API operations through conversational AI interfaces like VS Code Copilot. No complex setup – just seamless API-to-AI integration.
+The openapi-mcp-generator is a FastAPI-based service that acts as an MCP (Model Context Protocol) gateway, providing the fastest way to connect LLM chat interfaces with any OpenAPI-compliant API in seconds. Simply point it at an OpenAPI specification document and it automatically generates MCP-compliant tool manifests, handles authentication, and provides instant access to API operations through conversational AI interfaces like VS Code Copilot. No complex setup – just seamless API-to-AI integration.
 
 ## Demo
 ![MCP CLI Import Demo](./assets/mcp_cli_import_demo.gif)
@@ -13,20 +13,6 @@ The Runtime Orchestrator is a FastAPI-based service that acts as an MCP (Model C
 - **Dynamic Connector Loading**: Hot-swappable connectors from manifests with optional hot-reload
 - **Built-in Security (Still in development)**: Credential resolution for API Key & OAuth2 client credentials (JWT / RBAC planned)
 - **Development Tools**: Hot reload, sample connector auto-install
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    MCP Runtime Orchestrator                 │
-├─────────────────────────────────────────────────────────────┤
-│  FastAPI Application Layer                                  │
-│  ├── Health Endpoints        ├── MCP Protocol Endpoints     │
-│  ├── Project Management      ├── Runtime Control           │
-│  └── WebSocket Streaming     └── Authentication            │
-└──────────────────────────────────────────────────────────────┤
-
-```
 
 ## Quick Start
 
