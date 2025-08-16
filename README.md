@@ -295,7 +295,3 @@ When connected via stdio server:
 # Execute a tool
 {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "echo", "arguments": {"text": "Hello MCP!"}}}
 ```
-
-## License
-
-MIT License - see LICENSE file for details.
