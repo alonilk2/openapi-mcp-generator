@@ -3,7 +3,7 @@
 The Runtime Orchestrator is a FastAPI-based service that acts as an MCP (Model Context Protocol) gateway. It loads connectors dynamically, handles tool calls with built-in authentication, retries, rate limiting, and provides comprehensive observability.
 
 ## Demo
-
+![MCP CLI Import Demo](./assets/mcp_cli_import_demo.gif)
 ![Usage Demo](./assets/usage_demo.gif)
 
 ## Features
