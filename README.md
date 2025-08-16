@@ -1,6 +1,6 @@
 # openapi-mcp-generator - MCP Runtime Orchestrator
 
-The Runtime Orchestrator is a FastAPI-based service that acts as an MCP (Model Context Protocol) gateway. It loads connectors dynamically, handles tool calls with built-in authentication, retries, rate limiting, and provides comprehensive observability.
+The Runtime Orchestrator is a FastAPI-based service that acts as an MCP (Model Context Protocol) gateway, providing the fastest way to connect LLM chat interfaces with any OpenAPI-compliant API in seconds. Simply point it at an OpenAPI specification document and it automatically generates MCP-compliant tool manifests, handles authentication, and provides instant access to API operations through conversational AI interfaces like VS Code Copilot. No complex setup – just seamless API-to-AI integration.
 
 ## Demo
 ![MCP CLI Import Demo](./assets/mcp_cli_import_demo.gif)
